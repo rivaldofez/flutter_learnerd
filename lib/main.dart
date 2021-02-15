@@ -8,8 +8,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Hello World !")),
+          title: Text("Aplikasi Hello World"),
         ),
+        body: Center(
+            child: Container(
+                color: Colors.lightBlue,
+                width: 150,
+                height: 100,
+                child: Text(
+                  "Saya sedang melatih kemampuan flutter saya",
+                  style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 20),
+                ))),
       ),
     );
   }

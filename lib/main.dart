@@ -9,22 +9,36 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Latihan Image"),
+          title: Text("Spacer Widget"),
         ),
         body: Center(
-          child: Container(
-            color: Colors.black,
-            width: 200,
-            height: 200,
-            padding: EdgeInsets.all(3),
-            child: Image(
-              image: AssetImage("images/seon_hoo.jpg"),
-              fit: BoxFit.contain,
-              repeat: ImageRepeat.repeat,
-            ),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Spacer(flex: 1,),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.red,
+              ),
+              Spacer(flex: 2,),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.green,
+              ),
+              Spacer(flex: 3,),
+              Container(
+                width: 80,
+                height: 80,
+                color: Colors.blue,
+              ),
+              Spacer(flex: 2),
+            ],
           ),
         ),
       ),
     );
   }
 }
+

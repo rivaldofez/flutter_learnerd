@@ -2,36 +2,42 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green,
+        appBar: AppBar(
+          title: Text("Latihan TextField"),
+        ),
         body: Container(
-          margin: EdgeInsets.all(10),
-          child: ListView(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              buildCard(Icons.account_box,"Account Box"),
-              buildCard(Icons.adb, "Serangga Android"),
+              TextField(
+                maxLength: 5,
+                obscureText: true,
+                onChanged: (value){
+                  setState(() {
+
+                  });
+                },
+                controller: controller,
+              ),
+              Text(controller.text),
             ],
           ),
         ),
       ),
     );
   }
-
-  Card buildCard(IconData iconData, String text) {
-    return Card(
-              elevation: 5,
-              child: Row(
-                children: [
-                  Container(
-                      margin: EdgeInsets.all(5),
-                      child: Icon(iconData, color: Colors.green,)),
-                  Text(text),
-                ],
-              ),
-            );
-  }
 }
+

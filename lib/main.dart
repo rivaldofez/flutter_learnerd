@@ -9,121 +9,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Stack & Align Widget"),
+          title: Text("Latihan Image"),
         ),
-        body: Stack(
-          children: [
-            //Background
-            Column(
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.black12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  flex: 1,
-                  child: Row(
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.black12,
-                        ),
-                      ),
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        body: Center(
+          child: Container(
+            color: Colors.black,
+            width: 200,
+            height: 200,
+            padding: EdgeInsets.all(3),
+            child: Image(
+              image: AssetImage("images/seon_hoo.jpg"),
+              fit: BoxFit.contain,
+              repeat: ImageRepeat.repeat,
             ),
-            //ListView
-            ListView(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(
-                        "Ini adalah text yang ada di lapisan tengah dari stack",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            //Button
-            Align(
-              alignment: Alignment(0.9,0.9),
-              child: RaisedButton(
-                child: Text("MyButton"),
-                color: Colors.amber,
-                onPressed: () {},
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

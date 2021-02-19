@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,29 +9,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter Tipografi"),
+          title: Text("Custom Clipper"),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text("Contoh 01 (Tanpa Apapun)", style: TextStyle(fontSize: 20),),
-              Text(
-                "Contoh 02 (SmallCap)",
-                style: TextStyle(
-                    fontSize: 20, fontFeatures: [FontFeature.enable('smcp')]),
-              ),
-              Text(
-                "Contoh 1/2 (SmallCap & Frac) 100000",
-                style: TextStyle(
-                    fontSize: 20, fontFeatures: [FontFeature.enable('dtls')]),
-              ),
-              Text(
-                "Contoh 1/2 (SmallCap & Frac) 100000",
-                style: TextStyle(
-                    fontSize: 20, fontFeatures: [FontFeature.oldstyleFigures()]),
-              )
-            ],
+          child: ClipPath(
+            clipper: MyClipper(),
+            child: Image(
+              width: 300,
+              image: AssetImage("images/pemandangan.jpg"),
+            ),
           ),
         ),
       ),
@@ -41,3 +25,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, size.height);
+    path.quadraticBezierTo(size.width/2, size.height*0.75, size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+
+}

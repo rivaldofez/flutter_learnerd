@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qr/qr.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:flutter_learnerd/colorful_button.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,19 +9,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: Text("Colorful Button"),
+        ),
         body: Center(
-          child: QrImage(
-            version: 6,
-            backgroundColor: Colors.grey,
-            foregroundColor: Colors.black,
-            errorCorrectionLevel: QrErrorCorrectLevel.M,
-            padding: EdgeInsets.all(30),
-            size: 300,
-            data: "https://github.com/rivaldofez",
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ColorfulButton(Colors.pink, Colors.blue, Icons.adb),
+              ColorfulButton(Colors.amber, Colors.red, Icons.comment),
+              ColorfulButton(Colors.green, Colors.purple, Icons.computer),
+              ColorfulButton(Colors.blue, Colors.yellow, Icons.contact_phone),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
 

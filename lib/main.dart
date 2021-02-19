@@ -1,6 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
 
 void main() => runApp(MyApp());
 
@@ -8,44 +9,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainPage(),
-    );
-  }
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  String text = "Hasil QR Scan";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("QR Scan"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(text),
-            SizedBox(
-              height: 20,
-            ),
-            RaisedButton(
-              child: Text("Scan"),
-              onPressed: () async {
-                text = await scanner.scan();
-                setState(() {
-                });
-              },
-            )
-          ],
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Flutter Tipografi"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("Contoh 01 (Tanpa Apapun)", style: TextStyle(fontSize: 20),),
+              Text(
+                "Contoh 02 (SmallCap)",
+                style: TextStyle(
+                    fontSize: 20, fontFeatures: [FontFeature.enable('smcp')]),
+              ),
+              Text(
+                "Contoh 1/2 (SmallCap & Frac) 100000",
+                style: TextStyle(
+                    fontSize: 20, fontFeatures: [FontFeature.enable('dtls')]),
+              ),
+              Text(
+                "Contoh 1/2 (SmallCap & Frac) 100000",
+                style: TextStyle(
+                    fontSize: 20, fontFeatures: [FontFeature.oldstyleFigures()]),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
+

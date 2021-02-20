@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learnerd/post_result_model.dart';
 import 'package:flutter_learnerd/user_model.dart';
 
 void main() => runApp(MyApp());
@@ -11,8 +10,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  PostResult postResult = null;
-  User user = null;
+  String output = "no data";
 
   @override
   Widget build(BuildContext context) {
@@ -23,41 +21,19 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text((postResult != null)
-                  ? postResult.id +
-                      " | " +
-                      postResult.name +
-                      " | " +
-                      postResult.job +
-                      " | " +
-                      postResult.created
-                  : "Tidak ada data"),
-              Text((user != null)
-                  ? user.id +
-                  " | " +
-                  user.name
-                  : "Tidak ada data"),
+              Text(output),
               RaisedButton(
                 onPressed: () {
-                  PostResult.connectToAPI("Badu", "Dokter").then((value) {
-                    postResult = value;
+                  User.getUsers("1").then((value){
+                    output="";
+                    for(int i = 0; i < value.length; i++)
+                      output = output + "[ " + value[i].name +" ] ";
                     setState(() {
 
                     });
                   });
                 },
-                child: Text('Post'),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  User.connectToAPI("3").then((value) {
-                    user = value;
-                    setState(() {
-
-                    });
-                  });
-                },
-                child: Text('Get'),
+                child: Text("GET"),
               ),
             ],
           ),

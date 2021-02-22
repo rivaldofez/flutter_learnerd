@@ -1,56 +1,89 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_learnerd/color_bloc.dart';
+import 'dart:async';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isBlack = true;
+  bool isStop = true;
+  int counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider<ColorBloc>(
-          builder: (context) => ColorBloc(), child: MainPage()),
-    );
-  }
-}
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Timer Demo"),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                counter.toString(),
+                style: TextStyle(
+                    color: (isBlack) ? Colors.black : Colors.red,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                child: Text("Ubah warna 5 detik kemudian"),
+                onPressed: () {
+                  Timer(Duration(seconds: 5), (){
+                    setState(() {
+                      isBlack = !isBlack;
+                    });
+                  });
 
-class MainPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    ColorBloc bloc = BlocProvider.of<ColorBloc>(context);
-
-    return Scaffold(
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            backgroundColor: Colors.amber,
-            onPressed: () {
-              bloc.dispatch(ColorEvent.to_amber);
-            },
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            backgroundColor: Colors.lightBlue,
-            onPressed: () {
-              bloc.dispatch(ColorEvent.to_light_blue);
-            },
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        title: Text("BloC dengan Flutter Bloc"),
-      ),
-      body: Center(
-        child: BlocBuilder<ColorBloc, Color>(
-          builder: (context, currentColor) => AnimatedContainer(
-            height: 100,
-            width: 100,
-            color: currentColor,
-            duration: Duration(milliseconds: 500),
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                child: Text("Ubah warna secara langsung"),
+                onPressed: () {
+                  Timer.run(() {
+                    setState(() {
+                      isBlack = !isBlack;
+                    });
+                  });
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                child: Text("Start Timer"),
+                onPressed: () {
+                  isStop = false;
+                  counter = 0;
+                  Timer.periodic(Duration(seconds: 1), (timer) {
+                    if(isStop){
+                      timer.cancel();
+                    }
+                    setState(() {
+                      counter++;
+                    });
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text("Stop Timer"),
+                onPressed: () {
+                  isStop = true;
+                },
+              ),
+            ],
           ),
         ),
       ),

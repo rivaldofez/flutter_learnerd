@@ -2,8 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_learnerd/color_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:bloc/bloc.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  BlocSupervisor.delegate = await HydratedBlocDelegate.build();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -46,12 +51,13 @@ class MainPage extends StatelessWidget {
       ),
       body: Center(
         child: BlocBuilder<ColorBloc, Color>(
-          builder: (context, currentColor) => AnimatedContainer(
-            height: 100,
-            width: 100,
-            color: currentColor,
-            duration: Duration(milliseconds: 500),
-          ),
+          builder: (context, currentColor) =>
+              AnimatedContainer(
+                height: 100,
+                width: 100,
+                color: currentColor,
+                duration: Duration(milliseconds: 500),
+              ),
         ),
       ),
     );

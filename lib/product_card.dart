@@ -89,7 +89,7 @@ class ProductCard extends StatelessWidget {
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16)),
                       image: DecorationImage(
-                          image: AssetImage(imgURL), fit: BoxFit.cover),
+                          image: NetworkImage(imgURL), fit: BoxFit.cover),
                     ),
                   ),
                   Container(

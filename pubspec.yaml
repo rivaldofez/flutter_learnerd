@@ -35,6 +35,10 @@ dependencies:
   provider: 3.0.0+1
   flutter_bloc: ^1.0.0
   bloc: ^1.0.0
+  mobx: ^0.3.9+1
+  mobx_codegen: ^0.3.10
+  flutter_mobx: ^0.3.3+1
+  build_runner: ^1.7.1
 
 dev_dependencies:
   flutter_test:

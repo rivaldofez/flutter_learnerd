@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_learnerd/mobx/counter.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+
+final CounterMobx counter = CounterMobx();
 
 void main() => runApp(MyApp());
 
@@ -14,42 +18,35 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
-  final int x = -10;
-  final List<int> myList = [1,2,3,4];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Extension Demo"),
+        title: Text("MOBX State Management"),
       ),
       body: Center(
-        child: Text(
-          "Bilangan" & myList.midElement.toString(),
-          style: TextStyle(fontSize: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Observer(builder: (context) => Text(counter.value.toString(), style: TextStyle(fontSize: 80),)),
+            SizedBox(height: 40,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FloatingActionButton(onPressed: (){
+                  counter.decrement();
+                },
+                child: Icon(Icons.arrow_downward),),
+                SizedBox(width: 20,),
+                FloatingActionButton(onPressed: (){
+                  counter.increment();
+                },
+                child: Icon(Icons.arrow_upward),)
+              ],
+            )
+          ],
         ),
       ),
     );
   }
-}
-
-extension ListExtension<T> on List {
-  T get midElement => (this.length == 0) ? null :
-    this[(this.length/2).floor()];
-}
-
-extension NumberExtension<T extends num> on num {
-  T negate() => -1 * this;
-}
-
-// extension IntegerExtension on iznt{
-//   int negate() => -1 * this;
-// }
-//
-// extension DoubleExtension on double{
-//   double negate() => -1 * this;
-// }
-
-extension StringExtension on String{
-  String operator &(String other) => this + " " + other;
 }

@@ -1,9 +1,9 @@
+import 'package:division/division.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_learnerd/mobx/counter.dart';
+import 'package:flutter_learnerd/styles/custom_styles.dart';
+import 'package:flutter_learnerd/ui/custom_button.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
-final CounterMobx counter = CounterMobx();
 
 void main() => runApp(MyApp());
 
@@ -22,28 +22,21 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("MOBX State Management"),
+        title: Txt("Division Example", style: CustomStyles.txtStyle.clone()..fontSize(18),),
+        backgroundColor: Colors.red[900],
       ),
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Observer(builder: (context) => Text(counter.value.toString(), style: TextStyle(fontSize: 80),)),
-            SizedBox(height: 40,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FloatingActionButton(onPressed: (){
-                  counter.decrement();
-                },
-                child: Icon(Icons.arrow_downward),),
-                SizedBox(width: 20,),
-                FloatingActionButton(onPressed: (){
-                  counter.increment();
-                },
-                child: Icon(Icons.arrow_upward),)
-              ],
-            )
+            CustomButton(CustomStyles.buttonStyle),
+            SizedBox(
+              height: 20,
+            ),
+            CustomButton(CustomStyles.buttonStyle.clone()
+              ..background.color(Colors.green[300])
+              ..border(all: 3, color: Colors.green[900])),
           ],
         ),
       ),

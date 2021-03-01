@@ -42,6 +42,7 @@ dependencies:
   division: ^0.8.4+1
   mockito : ^4.1.1
   equatable: ^1.0.2
+  google_fonts: ^0.3.8
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
     - images/seon_hoo.jpg
     - images/pattern.png
     - images/pemandangan.jpg
+    - google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

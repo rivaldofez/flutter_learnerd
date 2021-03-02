@@ -1,65 +1,87 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learnerd/auth_services.dart';
-import 'package:flutter_learnerd/database_services.dart';
-import 'package:flutter_learnerd/wrapper.dart';
-import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // return StreamProvider.value(
-    //   value: AuthServices.firebaseUserStream,
-    //   child: MaterialApp(
-    //     debugShowCheckedModeBanner: false,
-    //     home: Wrapper(),
-    //   ),
-    // );
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Firestore Demo"),
-        ),
-        body: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      home: MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Shimmer Demo"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                RaisedButton(
-                  child: Text("Add Data"),
-                  onPressed: () {
-                    DatabaseServices.createOrUpdateProduct("1",
-                        name: "Masker", price: 1000000);
-                  },
+                Container(
+                  width: 200,
+                  height: 300,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                      ),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              "https://menhairstylesworld.com/wp-content/uploads/2019/05/03.-zac-efron-haircut-crop.jpg"),
+                          fit: BoxFit.cover)),
                 ),
-                RaisedButton(
-                  child: Text("Edit Data"),
-                  onPressed: () {
-                    DatabaseServices.createOrUpdateProduct("1",
-                        name: "Masker", price: 2000000);
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Get Data"),
-                  onPressed: () async {
-                    DocumentSnapshot snapshot = await DatabaseServices.getProduct("1");
-                    print(snapshot.data["nama"]);
-                    print(snapshot.data["harga"]);
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Delete Data"),
-                  onPressed: () async {
-                    await DatabaseServices.deleteProduct("1");
-                  },
+                Shimmer(
+                  gradient: LinearGradient(
+                      begin: Alignment(-1, 0.5),
+                      end: Alignment(1, -0.25),
+                      stops: [
+                        0.45,
+                        0.5,
+                        0.55
+                      ],
+                      colors: [
+                        Colors.white.withOpacity(0),
+                        Colors.white.withOpacity(0.5),
+                        Colors.white.withOpacity(0)
+                      ]),
+                  child: Container(width: 200, height: 300, color: Colors.red),
                 ),
               ],
             ),
-          ),
+            SizedBox(
+              height: 20,
+            ),
+            Shimmer(
+              direction: ShimmerDirection.rtl,
+              loop: 2,
+              period: Duration(seconds: 5),
+              gradient: LinearGradient(
+                  begin: Alignment(-1, 0.5),
+                  end: Alignment(1, -0.25),
+                  stops: [
+                    0.45,
+                    0.5,
+                    0.55
+                  ],
+                  colors: [
+                    Colors.black,
+                    Colors.white,
+                    Colors.black
+                  ]),
+              child: Text(
+                "Rivaldo Fernandes",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
       ),
     );

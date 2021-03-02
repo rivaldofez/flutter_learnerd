@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "937116391606",
+    "project_id": "flutterleanerd",
+    "storage_bucket": "flutterleanerd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937116391606:android:1837c1be052ad042226e17",
+        "android_client_info": {
+          "package_name": "co.id.flutter_learnerd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937116391606-gg81fq5vaii3t2fp2j47nuornlimkail.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd-KRF5uSZmZV6-xATVOYQ1DdEktIQjqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937116391606-gg81fq5vaii3t2fp2j47nuornlimkail.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

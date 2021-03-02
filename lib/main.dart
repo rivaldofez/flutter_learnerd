@@ -1,45 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_learnerd/auth_services.dart';
+import 'package:flutter_learnerd/wrapper.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme()
-      ),
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
-    );
-  }
-}
-
-class MainPage extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    Color fontColor = Colors.white;
-
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      appBar: AppBar(
-        backgroundColor: Colors.black45,
-        title: Text("Google Fonts Demo"),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Text("I'll Keep learning Flutter",
-              style: TextStyle(color: Colors.white, fontSize: 30),
-            ),
-            Text("Rivaldo Fernandes",
-              style: TextStyle(fontSize: 30, color: Colors.white
-              ),
-            ),
-          ],
-        ),
+    return StreamProvider.value(
+      value: AuthServices.firebaseUserStream,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Wrapper(),
       ),
     );
   }
